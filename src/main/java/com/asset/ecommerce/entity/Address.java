@@ -1,6 +1,11 @@
 package com.asset.ecommerce.entity;
 
-public class Address {
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Table(name="address")
+@Entity
+public class Address implements Serializable {
 
     private int id;
     private String country;
@@ -8,6 +13,9 @@ public class Address {
     private String street;
     private String zipCode;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -16,6 +24,7 @@ public class Address {
         this.id = id;
     }
 
+    @Column(name = "country")
     public String getCountry() {
         return country;
     }
@@ -24,6 +33,7 @@ public class Address {
         this.country = country;
     }
 
+    @Column(name = "city")
     public String getCity() {
         return city;
     }
@@ -32,6 +42,7 @@ public class Address {
         this.city = city;
     }
 
+    @Column(name = "street")
     public String getStreet() {
         return street;
     }
@@ -40,6 +51,7 @@ public class Address {
         this.street = street;
     }
 
+    @Column(name = "zip_code")
     public String getZipCode() {
         return zipCode;
     }

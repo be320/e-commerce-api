@@ -1,6 +1,11 @@
 package com.asset.ecommerce.entity;
 
-public class Product {
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Table(name = "product")
+@Entity
+public class Product implements Serializable {
 
     private int id;
     private String name;
@@ -10,22 +15,10 @@ public class Product {
     private Category category;
     private ProductType productType;
 
-    public ProductType getProductType() {
-        return productType;
-    }
 
-    public void setProductType(ProductType productType) {
-        this.productType = productType;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
     public int getId() {
         return id;
     }
@@ -34,6 +27,7 @@ public class Product {
         this.id = id;
     }
 
+    @Column(name="name")
     public String getName() {
         return name;
     }
@@ -42,6 +36,7 @@ public class Product {
         this.name = name;
     }
 
+    @Column(name="description")
     public String getDescription() {
         return description;
     }
@@ -50,6 +45,7 @@ public class Product {
         this.description = description;
     }
 
+    @Column(name="price")
     public double getPrice() {
         return price;
     }
@@ -58,6 +54,8 @@ public class Product {
         this.price = price;
     }
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "image_id")
     public Image getImage() {
         return image;
     }
@@ -65,4 +63,25 @@ public class Product {
     public void setImage(Image image) {
         this.image = image;
     }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_type_id")
+    public ProductType getProductType() {
+        return productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
 }
