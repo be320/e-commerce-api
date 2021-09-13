@@ -9,6 +9,7 @@ import java.util.List;
 public class Shipper extends Staff {
 
     private int id;
+    private String license;
     private List<Order> orders = new ArrayList<>();
 
     @Override
@@ -31,5 +32,14 @@ public class Shipper extends Staff {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    @Column(name = "license")
+    public String getLicense() {
+        return license;
+    }
+
+    public void setLicense(String license) {
+        this.license = license;
     }
 }

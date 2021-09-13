@@ -31,6 +31,45 @@ CREATE TABLE `ecommerce_db`.`user` (
     ON UPDATE CASCADE);
 
 
+CREATE TABLE `ecommerce_db`.`staff` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `department` VARCHAR(45) NOT NULL,
+  `date_of_birth` DATE NOT NULL,
+  `gender` VARCHAR(45) NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_user_staff_idx` (`user_id` ASC),
+  CONSTRAINT `fk_user_staff`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `ecommerce_db`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE);
+
+
+CREATE TABLE `ecommerce_db`.`shipper` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `license` VARCHAR(45) NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_shipper_user_idx` (`user_id` ASC),
+  CONSTRAINT `fk_shipper_user`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `ecommerce_db`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE);
+
+
+CREATE TABLE `ecommerce_db`.`customer` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `vip` TINYINT NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_customer_user_idx` (`user_id` ASC),
+  CONSTRAINT `fk_customer_user`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `ecommerce_db`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE);
 
 
 

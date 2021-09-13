@@ -9,6 +9,7 @@ import java.util.List;
 public class Customer extends User {
 
     private int id;
+    private boolean vip;
     private List<Order> orders = new ArrayList<>();
 
     @Id
@@ -29,5 +30,14 @@ public class Customer extends User {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    @Column(name = "vip")
+    public boolean isVip() {
+        return vip;
+    }
+
+    public void setVip(boolean vip) {
+        this.vip = vip;
     }
 }
