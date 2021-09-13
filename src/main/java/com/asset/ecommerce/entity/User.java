@@ -1,5 +1,9 @@
 package com.asset.ecommerce.entity;
 
+import javax.persistence.*;
+
+@Table(name = "user")
+@Entity
 public abstract class User {
 
     private int id;
@@ -9,6 +13,9 @@ public abstract class User {
     private String phoneNumber;
     private Address address;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -17,6 +24,7 @@ public abstract class User {
         this.id = id;
     }
 
+    @Column(name = "username")
     public String getUsername() {
         return username;
     }
@@ -25,6 +33,7 @@ public abstract class User {
         this.username = username;
     }
 
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -33,6 +42,7 @@ public abstract class User {
         this.password = password;
     }
 
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -41,6 +51,7 @@ public abstract class User {
         this.email = email;
     }
 
+    @Column(name = "phone_number")
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -49,6 +60,8 @@ public abstract class User {
         this.phoneNumber = phoneNumber;
     }
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "address_id")
     public Address getAddress() {
         return address;
     }

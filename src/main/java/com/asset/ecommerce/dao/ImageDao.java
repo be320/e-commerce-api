@@ -3,10 +3,12 @@ package com.asset.ecommerce.dao;
 import com.asset.ecommerce.entity.Image;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
 
+@Repository
 public class ImageDao extends AbstractDao {
 
     public Image get(int id){

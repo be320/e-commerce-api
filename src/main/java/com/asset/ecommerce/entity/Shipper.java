@@ -1,13 +1,30 @@
 package com.asset.ecommerce.entity;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name="shipper")
 public class Shipper extends Staff {
 
+    private int id;
     private List<Order> orders = new ArrayList<>();
 
+    @Override
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    public int getId() {
+        return id;
+    }
 
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @OneToMany(mappedBy = "shipper", fetch = FetchType.LAZY)
     public List<Order> getOrders() {
         return orders;
     }

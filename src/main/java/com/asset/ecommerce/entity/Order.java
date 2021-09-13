@@ -1,7 +1,10 @@
 package com.asset.ecommerce.entity;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "order")
 public class Order {
 
     private int id;
@@ -12,22 +15,9 @@ public class Order {
     private Customer customer;
     private Shipper shipper;
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Shipper getShipper() {
-        return shipper;
-    }
-
-    public void setShipper(Shipper shipper) {
-        this.shipper = shipper;
-    }
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -36,6 +26,7 @@ public class Order {
         this.id = id;
     }
 
+    @Column(name = "status")
     public String getStatus() {
         return status;
     }
@@ -44,6 +35,7 @@ public class Order {
         this.status = status;
     }
 
+    @Column(name = "total")
     public double getTotal() {
         return total;
     }
@@ -52,6 +44,7 @@ public class Order {
         this.total = total;
     }
 
+    @Column(name = "ordered_date")
     public Date getOrderedDate() {
         return orderedDate;
     }
@@ -60,11 +53,32 @@ public class Order {
         this.orderedDate = orderedDate;
     }
 
+    @Column(name = "shipped_date")
     public Date getShippedDate() {
         return shippedDate;
     }
 
     public void setShippedDate(Date shippedDate) {
         this.shippedDate = shippedDate;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shipper_id")
+    public Shipper getShipper() {
+        return shipper;
+    }
+
+    public void setShipper(Shipper shipper) {
+        this.shipper = shipper;
     }
 }

@@ -1,17 +1,16 @@
 package com.asset.ecommerce.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Table(name = "computer")
 @Entity
-public class Computer implements ProductType {
+public class Computer extends ProductType {
 
     private int id;
-    private List<Product> products = new ArrayList<>();
     private String cpu;
     private int ram;
+    private ProductType productType;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,14 +43,13 @@ public class Computer implements ProductType {
         this.ram = ram;
     }
 
-    @Override
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-    public List<Product> getProducts() {
-        return products;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_type_id")
+    public ProductType getProductType() {
+        return productType;
     }
 
-    @Override
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
     }
 }

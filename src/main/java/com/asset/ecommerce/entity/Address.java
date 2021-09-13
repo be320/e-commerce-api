@@ -12,6 +12,7 @@ public class Address implements Serializable {
     private String city;
     private String street;
     private String zipCode;
+    private User user;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -60,4 +61,13 @@ public class Address implements Serializable {
         this.zipCode = zipCode;
     }
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
