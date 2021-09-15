@@ -1,5 +1,10 @@
 package com.asset.ecommerce.entity;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class OrderProduct {
     private int id;
     private Order order;
@@ -8,6 +13,9 @@ public class OrderProduct {
     private int quantity;
     private double discount;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
     public int getId() {
         return id;
     }

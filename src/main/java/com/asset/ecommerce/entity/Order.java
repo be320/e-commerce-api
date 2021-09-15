@@ -2,6 +2,7 @@ package com.asset.ecommerce.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "order")
@@ -14,6 +15,7 @@ public class Order {
     private Date shippedDate;
     private Customer customer;
     private Shipper shipper;
+    private List<Product> products;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -80,5 +82,14 @@ public class Order {
 
     public void setShipper(Shipper shipper) {
         this.shipper = shipper;
+    }
+
+    @ManyToMany(mappedBy = "orders", fetch = FetchType.LAZY)
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }

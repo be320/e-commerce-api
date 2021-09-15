@@ -9,6 +9,7 @@ import java.util.List;
 public abstract class ProductType {
 
     private int id;
+    private String title;
     private List<Product> products = new ArrayList<>();
 
     @Id
@@ -22,7 +23,7 @@ public abstract class ProductType {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "product_type", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "productType", fetch = FetchType.LAZY)
     public List<Product> getProducts() {
         return products;
     }
@@ -31,4 +32,12 @@ public abstract class ProductType {
         this.products = products;
     }
 
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

@@ -10,7 +10,9 @@ public class Shoe extends ProductType {
 
     private int id;
     private int size;
+    private boolean running;
     private ProductType productType;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +26,7 @@ public class Shoe extends ProductType {
     public void setId(int id) {
         this.id = id;
     }
+
 
     @Column(name = "size")
     public int getSize() {
@@ -42,5 +45,14 @@ public class Shoe extends ProductType {
 
     public void setProductType(ProductType productType) {
         this.productType = productType;
+    }
+
+    @Column(name = "running")
+    public boolean isRunning() {
+        return running;
+    }
+
+    public void setRunning(boolean running) {
+        this.running = running;
     }
 }

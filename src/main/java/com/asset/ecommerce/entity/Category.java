@@ -10,7 +10,8 @@ import java.util.List;
 public class Category implements Serializable {
 
     private int id;
-    private List<Product> products = new ArrayList<>();
+    private String title;
+    private List<Product> products;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,6 +24,15 @@ public class Category implements Serializable {
         this.id = id;
     }
 
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     public List<Product> getProducts() {
         return products;
@@ -31,4 +41,5 @@ public class Category implements Serializable {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
+
 }

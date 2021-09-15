@@ -1,10 +1,11 @@
 package com.asset.ecommerce.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Table(name = "computer")
 @Entity
-public class Computer extends ProductType {
+public class Computer extends ProductType implements Serializable {
 
     private int id;
     private String cpu;
@@ -44,7 +45,7 @@ public class Computer extends ProductType {
     }
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "product_type_id")
+    @JoinColumn(name = "productType_id")
     public ProductType getProductType() {
         return productType;
     }

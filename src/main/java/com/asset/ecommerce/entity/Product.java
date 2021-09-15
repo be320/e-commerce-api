@@ -2,6 +2,7 @@ package com.asset.ecommerce.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Table(name = "product")
 @Entity
@@ -14,6 +15,7 @@ public class Product implements Serializable {
     private Image image;
     private Category category;
     private ProductType productType;
+    private List<Order> orders;
 
 
     @Id
@@ -84,4 +86,12 @@ public class Product implements Serializable {
         this.category = category;
     }
 
+    @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 }
